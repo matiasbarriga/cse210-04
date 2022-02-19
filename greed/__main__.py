@@ -54,9 +54,9 @@ def main():
     level_board.set_position(Point(CELL_SIZE, 0))
     cast.add_actor("level_board", level_board)
     
-    # create the robot
+    # create the player
     x = int(MAX_X / 2)
-    y = int(MAX_Y / 2)
+    y = 580
     position = Point(x, y)
 
     robot = Actor()
