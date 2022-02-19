@@ -17,30 +17,42 @@ from game.shared.point import Point
 FRAME_RATE = 12
 MAX_X = 900
 MAX_Y = 600
-CELL_SIZE = 60
+CELL_SIZE = 15
 FONT_SIZE = 15
 COLS = 60
 ROWS = 40
 CAPTION = "Greed"
+ROCK_AND_GEM = ["*", "o"]
 DATA_PATH = os.path.dirname(os.path.abspath(__file__)) + "/data/messages.txt"
 WHITE = Color(255, 255, 255)
+YELLOW = Color(249, 215, 28)
 
 #Add game level
-GAME_LEVEL = input("Choose a dificculty (Easy / Medium / Hard): ")
-DEFAULT_ARTIFACTS = 40
+DEFAULT_ARTIFACTS = None
+GAME_LEVEL = input("Choose a dificculty (Normal / Hard): ").title()
+if GAME_LEVEL.lower() == "normal":
+    DEFAULT_ARTIFACTS = 40
+else: DEFAULT_ARTIFACTS = 100
 
 def main():
     
     # create the cast
     cast = Cast()
     
-    # create the banner
-    banner = Actor()
-    banner.set_text("")
-    banner.set_font_size(FONT_SIZE)
-    banner.set_color(WHITE)
-    banner.set_position(Point(CELL_SIZE, 0))
-    cast.add_actor("banners", banner)
+    # create the scoreboard banner
+    scoreboard = Actor()
+    scoreboard.set_font_size(FONT_SIZE)
+    scoreboard.set_color(YELLOW)
+    scoreboard.set_position(Point(CELL_SIZE, 30))
+    cast.add_actor("banners", scoreboard)
+
+    # create the game difficulty
+    level_board = Actor()
+    level_board.set_font_size(FONT_SIZE)
+    level_board.set_text(f"Level: {GAME_LEVEL}")
+    level_board.set_color(WHITE)
+    level_board.set_position(Point(CELL_SIZE, 0))
+    cast.add_actor("level_board", level_board)
     
     # create the robot
     x = int(MAX_X / 2)
@@ -48,7 +60,7 @@ def main():
     position = Point(x, y)
 
     robot = Actor()
-    robot.set_text("Samad")
+    robot.set_text("#")
     robot.set_font_size(FONT_SIZE)
     robot.set_color(WHITE)
     robot.set_position(position)
@@ -60,10 +72,9 @@ def main():
         messages = data.splitlines()
 
     for n in range(DEFAULT_ARTIFACTS):
-        # rock_and_gem = ["*", "o"]
-        # text = random.choice(rock_and_gem)
-        text = chr(random.randint(33, 126))
-        message = messages[n]
+        text = random.choice(ROCK_AND_GEM)
+        # text = chr(random.randint(33, 126))
+        # message = text
 
         x = random.randint(1, COLS - 1)
         y = random.randint(1, ROWS - 1)
@@ -80,7 +91,6 @@ def main():
         artifact.set_font_size(FONT_SIZE)
         artifact.set_color(color)
         artifact.set_position(position)
-        artifact.set_message(message)
         cast.add_actor("artifacts", artifact)
     
     # start the game

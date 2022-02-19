@@ -12,16 +12,21 @@ class Artifact(Actor):
             self._message = the message that the artifact holds
         """
         super().__init__()
-        self._message = ""
+        self._text = ""
 
-    def get_message(self):
+    def is_rock(self):
         """
-        return the message of the artifact
+        "o" is the text representation of a rock
         """
-        return self._message
 
-    def set_message(self, message):
+        return self._text == "o"
+
+    def is_gem(self):
         """
-        Set the message that the artifact will hold
+        "*" is the text representation of a gem
         """
-        self._message = message
+        return self._text == "*"
+    
+    def set_text(self, text):
+
+        self._text = text
