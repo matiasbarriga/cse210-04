@@ -42,13 +42,13 @@ def main():
     banner.set_position(Point(CELL_SIZE, 0))
     cast.add_actor("banners", banner)
     
-    # create the robot
+    # create the player
     x = int(MAX_X / 2)
-    y = int(MAX_Y / 2)
+    y = 580
     position = Point(x, y)
 
     robot = Actor()
-    robot.set_text("Samad")
+    robot.set_text("#")
     robot.set_font_size(FONT_SIZE)
     robot.set_color(WHITE)
     robot.set_position(position)
