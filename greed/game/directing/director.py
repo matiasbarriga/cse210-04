@@ -56,6 +56,9 @@ class Director:
         scoreboard.set_text(f"Score: {self._score}")
         max_x = self._video_service.get_width()
         max_y = self._video_service.get_height()
+        for artifact in artifacts:
+           artifact.move_next(max_x, max_y)
+
         robot.move_next(max_x, max_y)
 
         for artifact in artifacts:

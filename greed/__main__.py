@@ -75,7 +75,6 @@ def main():
         text = random.choice(ROCK_AND_GEM)
         # text = chr(random.randint(33, 126))
         # message = text
-
         x = random.randint(1, COLS - 1)
         y = random.randint(1, ROWS - 1)
         position = Point(x, y)
@@ -91,6 +90,7 @@ def main():
         artifact.set_font_size(FONT_SIZE)
         artifact.set_color(color)
         artifact.set_position(position)
+        artifact.set_velocity(Point(0, 3))
         cast.add_actor("artifacts", artifact)
     
     # start the game
