@@ -70,8 +70,10 @@ class Director:
                 """
                 if artifact.is_gem():
                     self._score += 1
+                    cast.remove_actor("artifacts", artifact)
                 if artifact.is_rock():
                     self._score -= 1
+                    cast.remove_actor("artifacts", artifact)
 
     def _do_outputs(self, cast):
         """Draws the actors on the screen.
