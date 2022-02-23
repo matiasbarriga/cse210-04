@@ -65,6 +65,7 @@ def main():
     robot.set_color(WHITE)
     robot.set_position(position)
     cast.add_actor("robots", robot)
+    robot.set_velocity(Point(0, 4))
     
     # create the artifacts
     with open(DATA_PATH) as file:
@@ -90,7 +91,7 @@ def main():
         artifact.set_font_size(FONT_SIZE)
         artifact.set_color(color)
         artifact.set_position(position)
-        artifact.set_velocity(Point(0, 3))
+        artifact.set_velocity(Point(0, 2))
         cast.add_actor("artifacts", artifact)
     
     # start the game
